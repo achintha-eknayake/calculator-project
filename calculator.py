@@ -16,12 +16,10 @@ class WellcomeMessage(tk.Frame):
         self.master.title('Wellcome')
         self.configure(bg="#db0b49")
         self.master.resizable(False,False)
-        center_window(280,150)
         center_window(self.master,300,150)
         
         self.selected_colour = "#17161b"  # Default colour
         self.create_Widgets()
-        self.pack
         self.pack(fill='both',expand=True)
 
     def get_input(self):
@@ -38,8 +36,8 @@ class WellcomeMessage(tk.Frame):
         colour_code = colorchooser.askcolor(title='choose colour')
         if colour_code[1]:
             self.selected_colour = colour_code[1]
-    def create_Widgets(self):
 
+    def create_Widgets(self):
         self.entry_var =tk.StringVar()
         self.entry_var.trace_add('write',self.update_label)
         self.entry =tk.Entry(self,width=15,font=('Arial',16),textvariable = self.entry_var)
@@ -52,11 +50,8 @@ class WellcomeMessage(tk.Frame):
         colour_button.place(x=150, y=100)    
         
         quit_button = tk.Button(self, text='Quit', command=self.master.quit)
-        quit_button.place(x=10, y=10)
         quit_button.place(x=270, y=0)
         
-        login_button = tk.Button(self, text="Login", width=10)
-        login_button.place(x=80, y=60)  # Consistent with place geometry management
         login_button = tk.Button(self, text="Login", width=10, command=self.on_login)
         login_button.place(x=45, y=100)  
 
@@ -80,8 +75,6 @@ class Calculator(tk.Frame):
         center_window(self.master)
         self.equation =""
 
-root = tk.Tk()
-root.eval('tk::PlaceWindow . center')
         self.create_widgets()
         self.pack(fill='both',expand=True)
 
@@ -106,7 +99,7 @@ root.eval('tk::PlaceWindow . center')
     def create_widgets(self):
         
         self.label_result = tk.Label(self,width=25,height=2,text="",font=("arial",30))
-        self.label_result.pack()  # Added placement for the result label
+        self.label_result.pack()  # placement for the result label
 
         
         Button(self,text="C", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#3697f5",command=lambda: self.clear()).place(x=10,y=100)
@@ -124,14 +117,10 @@ root.eval('tk::PlaceWindow . center')
         Button(self,text="6", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#2a2d36",command=lambda: self.show("6")).place(x=290,y=300)
         Button(self,text="+", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#2a2d36",command=lambda: self.show("+")).place(x=430,y=300)
 
-# Define the path to the icon file
-icon_path = os.path.join(script_dir, "icon.ico")
         Button(self,text="1", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#2a2d36",command=lambda: self.show("1")).place(x=10,y=400)
         Button(self,text="2", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#2a2d36",command=lambda: self.show("2")).place(x=150,y=400)
         Button(self,text="3", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#2a2d36",command=lambda: self.show("3")).place(x=290,y=400)
         Button(self,text="0", width=11, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#2a2d36",command=lambda: self.show("0")).place(x=10,y=500)
 
-root.iconbitmap(icon_path)
-WellcomeMessage(root)
-root.mainloop()        Button(self,text=".", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#2a2d36",command=lambda: self.show(".")).place(x=290,y=500)
+        Button(self,text=".", width=5, height=1, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#2a2d36",command=lambda: self.show(".")).place(x=290,y=500)
         Button(self,text="=", width=5, height=3, font=("arial",30,"bold"), bd=1,fg="#fff",bg="#fe9037",command=lambda: self.calculate()).place(x=430,y=400)
